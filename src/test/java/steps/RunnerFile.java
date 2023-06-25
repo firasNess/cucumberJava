@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class RunnerFile {
 
-    public static Map<String, Object> readOptions(CommandLineParser parser, String[] args,String text) throws Exception {
+    public static Map<String, Object> readOptions(CommandLineParser parser, String[] args) throws Exception {
         Options options = new Options();
         options.addOption(Option.builder()
                 .longOpt("bdd_args")
@@ -40,8 +40,8 @@ public class RunnerFile {
         CommandLine cmd = parser.parse(options, args);
         Map<String, Object> optDict = new HashMap<>();
 
-        if (cmd.hasOption(text)) {
-            String bddArgsString = cmd.getOptionValue(text);
+        if (cmd.hasOption("bdd_args")) {
+            String bddArgsString = cmd.getOptionValue("bdd_args");
 
             try {
                 optDict = convertStringToMap(bddArgsString);
@@ -105,7 +105,7 @@ public class RunnerFile {
         Context context = Context.getInstance();
 
         try {
-            Map<String, Object> options = readOptions(parser, args, "bdd_args");
+            Map<String, Object> options = readOptions(parser, args);
             context.setVariables("opdict", options);
 
             String feature_file_path = (String) options.get("feature_file_path");
@@ -114,6 +114,12 @@ public class RunnerFile {
             Path feature_file = Paths.get(feature_file_path);
             String feature_file_name = feature_file.getFileName().toString().replaceFirst("[.][^.]+$", "");
             context.setVariables("feature_file_name", feature_file_name);
+
+
+
+
+
+
 
 
 
