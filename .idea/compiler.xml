@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="java_cucumber" />
+        <module name="cucumberJava" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cucumberJava" options="-Werror" />
       <module name="java_cucumber" options="-Werror" />
     </option>
   </component>
