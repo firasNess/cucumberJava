@@ -1,4 +1,7 @@
 package steps;
+import ch.qos.logback.core.CoreConstants;
+import ch.qos.logback.core.joran.spi.ConsoleTarget;
+import ch.qos.logback.core.net.SyslogOutputStream;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.apache.commons.cli.*;
@@ -22,7 +25,7 @@ import java.util.Map;
 
 public class RunnerFile {
 
-    public static Map<String, Object> readOptions(CommandLineParser parser, String[] args) throws Exception {
+    public static Map<String, Object> readOptions(CommandLineParser parser, String[] args, String args_type) throws Exception {
         Options options = new Options();
         options.addOption(Option.builder()
                 .longOpt("bdd_args")
@@ -40,7 +43,7 @@ public class RunnerFile {
         CommandLine cmd = parser.parse(options, args);
         Map<String, Object> optDict = new HashMap<>();
 
-        if (cmd.hasOption("bdd_args")) {
+        if (cmd.hasOption("bdd_args") && args_type == "bdd_args") {
             String bddArgsString = cmd.getOptionValue("bdd_args");
 
             try {
@@ -51,7 +54,12 @@ public class RunnerFile {
             } catch (Exception e) {
                 throw new Exception("Failed to evaluate bdd_args. String is not in dict format.");
             }
-        } else {
+        }
+        else if (cmd.hasOption("results_path") && args_type == "results_path") {
+            String bddArgsString = cmd.getOptionValue("results_path");
+            optDict.put("results_path", bddArgsString);
+        }
+        else {
             throw new Exception("Missing bdd_args in arguments passed to the test.");
         }
 
@@ -105,7 +113,7 @@ public class RunnerFile {
         Context context = Context.getInstance();
 
         try {
-            Map<String, Object> options = readOptions(parser, args);
+            Map<String, Object> options = readOptions(parser, args, "bdd_args");
             context.setVariables("opdict", options);
 
             String feature_file_path = (String) options.get("feature_file_path");
@@ -115,10 +123,11 @@ public class RunnerFile {
             String feature_file_name = feature_file.getFileName().toString().replaceFirst("[.][^.]+$", "");
             context.setVariables("feature_file_name", feature_file_name);
 
+            Map<String, Object> result = readOptions(parser, args, "results_path");
+            context.setVariables("results_path", result);
 
-
-
-
+            context.setVariables("failure_screenshot",  result+"/screenshot_after_failure.png");
+            
 
 
 
