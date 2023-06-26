@@ -1,15 +1,16 @@
 package steps;
-import ch.qos.logback.core.CoreConstants;
-import ch.qos.logback.core.joran.spi.ConsoleTarget;
-import ch.qos.logback.core.net.SyslogOutputStream;
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.apache.commons.cli.*;
 import org.junit.runner.RunWith;
 import packages.Context;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,6 +107,22 @@ public class RunnerFile {
 
         return map;
     }
+    public static void copyHistoryAsideIfExists(String resultFolderPath) throws IOException {
+        String tempFolder = System.getenv("TMP") + "/automation";
+
+        Path historyFolder = Path.of(resultFolderPath, "report", "history");
+        Path lastHistorySaved = Path.of(tempFolder, "last_history");
+
+        // Remove the last history saved if it exists
+        if (Files.exists(lastHistorySaved)) {
+            Files.delete(lastHistorySaved);
+        }
+
+        // Copy the history folder to the last history saved folder if it exists
+        if (Files.exists(historyFolder)) {
+            Files.copy(historyFolder, lastHistorySaved, StandardCopyOption.REPLACE_EXISTING);
+        }
+    }
 
 
     public static void main(String[] args) {
@@ -127,8 +144,30 @@ public class RunnerFile {
             context.setVariables("results_path", result);
 
             context.setVariables("failure_screenshot",  result+"/screenshot_after_failure.png");
-            
+            context.setVariables("headless",options.getOrDefault("headless",false).equals(true));
+            context.setVariables("private_mode",options.getOrDefault("private_mode",false).equals(true));
+            context.setVariables("save_send",options.getOrDefault("save_send",false).equals(true));
+            context.setVariables("application",options.getOrDefault("application",false).equals(true));
+            context.setVariables("env",options.getOrDefault("env","preprod"));
+            copyHistoryAsideIfExists(context.getVariables("results_path").toString().replaceAll("^\\{?results_path=", "").replaceAll("[{}]$", ""));
 
+            //todo:add logging functios
+            // # Init logger and report
+            // #init_logger_reporter(opt_dict)
+
+            //todo:add screen factory to context
+            context.setVariables("screens_manager","screens_managerOBJECT");
+
+            String mail = "test@gmail.com";
+            String temp_mail_api = "tempmail@temp.com";
+            if (context.getVariables("env").equals("preprod")){
+                context.setVariables("mailbox",mail);
+            }else {
+                context.setVariables("mailbox",temp_mail_api);
+            }
+            Map<String, Object> userData = new HashMap<>();
+            context.setVariables("user_data",userData);
+            context.setVariables("rerun_broken_scenario",options.getOrDefault("rerun",true).equals(true));
 
 
 
