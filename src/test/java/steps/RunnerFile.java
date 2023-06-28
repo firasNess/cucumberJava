@@ -1,5 +1,6 @@
 package steps;
 
+import Screens.ScreensFactory;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.apache.commons.cli.*;
@@ -156,7 +157,7 @@ public class RunnerFile {
             // #init_logger_reporter(opt_dict)
 
             //todo:add screen factory to context
-            context.setVariables("screens_manager","screens_managerOBJECT");
+            context.setVariables("screens_manager", new ScreensFactory());
 
             String mail = "test@gmail.com";
             String temp_mail_api = "tempmail@temp.com";
