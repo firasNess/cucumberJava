@@ -1,4 +1,4 @@
-package packages.Screens;
+package Screens;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

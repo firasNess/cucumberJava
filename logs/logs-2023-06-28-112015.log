@@ -1,0 +1,4 @@
+11:20:15.085 INFO  steps.RunnerFile -TEMP Email will be: test@gmail.com
+11:20:15.104 INFO  steps.RunnerFile -*** BDD Setup ended ***
+11:20:15.104 INFO  steps.RunnerFile -------------------------------------------------------------------------------------------------------------------------------------------------------
+11:20:15.105 INFO  steps.RunnerFile -*** Starting Test: chrome new_forms_tests/confirmation_for_structure ***

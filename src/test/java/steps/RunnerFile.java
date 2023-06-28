@@ -1,11 +1,13 @@
 package steps;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
+import Screens.ScreensFactory;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 import org.apache.commons.cli.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.runner.RunWith;
 import packages.Context;
-import packages.Screens.ScreensFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +16,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
-
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -26,6 +27,13 @@ import java.util.Map;
 
 
 public class RunnerFile {
+    private static final Logger log = LogManager.getLogger(RunnerFile.class.getName());
+    private static int  exit_code;
+    static Context context = Context.getInstance();
+
+    private static String logLineBuilder(){
+        return "-".repeat(150);
+    }
 
     public static Map<String, Object> readOptions(CommandLineParser parser, String[] args, String args_type) throws Exception {
         Options options = new Options();
@@ -52,8 +60,10 @@ public class RunnerFile {
                 optDict = convertStringToMap(bddArgsString);
 
             } catch (ClassCastException e) {
+                log.error("Failed to cast bdd_args to Map<String, Object>.");
                 throw new Exception("Failed to cast bdd_args to Map<String, Object>.");
             } catch (Exception e) {
+                log.error("Failed to evaluate bdd_args. String is not in dict format.");
                 throw new Exception("Failed to evaluate bdd_args. String is not in dict format.");
             }
         }
@@ -62,6 +72,7 @@ public class RunnerFile {
             optDict.put("results_path", bddArgsString);
         }
         else {
+            log.error("Missing bdd_args in arguments passed to the test.");
             throw new Exception("Missing bdd_args in arguments passed to the test.");
         }
 
@@ -125,10 +136,9 @@ public class RunnerFile {
         }
     }
 
-
-    public static void main(String[] args) {
+    static void setup(String[] args){
         CommandLineParser parser = new DefaultParser();
-        Context context = Context.getInstance();
+
 
         try {
             Map<String, Object> options = readOptions(parser, args, "bdd_args");
@@ -152,7 +162,7 @@ public class RunnerFile {
             context.setVariables("env",options.getOrDefault("env","preprod"));
             copyHistoryAsideIfExists(context.getVariables("results_path").toString().replaceAll("^\\{?results_path=", "").replaceAll("[{}]$", ""));
 
-            //todo:add logging functios
+            //todo:add logging functions
             // # Init logger and report
             // #init_logger_reporter(opt_dict)
 
@@ -163,19 +173,83 @@ public class RunnerFile {
             String temp_mail_api = "tempmail@temp.com";
             if (context.getVariables("env").equals("preprod")){
                 context.setVariables("mailbox",mail);
+                log.info("TEMP Email will be: "+mail);
             }else {
                 context.setVariables("mailbox",temp_mail_api);
+                log.info("TEMP Email will be: "+temp_mail_api);
             }
             Map<String, Object> userData = new HashMap<>();
             context.setVariables("user_data",userData);
             context.setVariables("rerun_broken_scenario",options.getOrDefault("rerun",true).equals(true));
-
-
-
-
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    static void test(){
+        Map<String, Object> optDict = (Map<String, Object>) context.getVariables("opdict");
+        log.info(
+                "*** Starting Test: "+ optDict.getOrDefault("browser","chrome")+" "+ optDict.get("feature_file_path")+ " ***");
+        boolean failed = true;
+        String f = Paths.get((String) optDict.get("feature_file_path")).toString().replace("\\", "/");
+        try {
+            f = Paths.get(f).getParent().toString();
+
+            Map<String, Object> result_path = (Map<String, Object>) context.getVariables("results_path");
+            Path junitResults = Paths.get((String) result_path.get("results_path")).resolve("junit");
+            Files.createDirectories(junitResults);
+            String args = "'" + f + "' -f allure_behave.formatter:AllureFormatter -o '" + result_path.get("results_path") + "' --junit --junit-directory '" + junitResults + "'";
+
+
+            if (optDict.containsKey("tags")) {
+                String toJoin = " --tags=";
+                String tagsFromArgs = (String) optDict.get("tags");
+                String splitBy = "&";
+                if (tagsFromArgs.contains("|")) {
+                    toJoin = ",";
+                    splitBy = "\\|";
+                }
+                args += " --tags=" + String.join(toJoin, tagsFromArgs.split(splitBy));
+            }
+            log.info(args);
+            args += " --tags=-in_dev";
+
+            log.debug("^^^^^^^ before calling Configuration(args) ^^^^^^^^");
+//            Configuration runnerConfig = new Configuration(args.split(" "));
+//            log.debug("^^^^^^^ after calling Configuration(args) ^^^^^^^^");
+//
+//            log.debug("^^^^^^^^ calling runner.run() ^^^^^^^^");
+//            Runner runner = new Runner(runnerConfig);
+//            failed = runner.run();
+        } catch (Exception e) {
+            log.debug("*** Exception: " + e.getMessage());
+            log.debug("Traceback: ");
+            e.printStackTrace();
+        }
+
+        exit_code = 0;
+        if (failed) {
+            exit_code = 4;
+        }
+
+    }
+
+    public static void main(String[] args) {
+        try {
+            exit_code = 0;
+            setup(args);
+            log.info("*** BDD Setup ended ***");
+            log.info(logLineBuilder());
+            test();
+            log.info("*** BDD Test ended ***");
+            log.info(logLineBuilder());
+        }catch (Exception e){
+            log.error("Test() exited with exception "+ e);
+            exit_code =4;
+        }
+        //teardown()
+        log.info("finished");
+        System.exit(exit_code);
     }
 
 
