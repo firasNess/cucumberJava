@@ -1,11 +1,11 @@
 package steps;
 
-import Screens.ScreensFactory;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.apache.commons.cli.*;
 import org.junit.runner.RunWith;
 import packages.Context;
+import packages.Screens.ScreensFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
