@@ -1,3 +1,2 @@
-11:47:24.388 INFO  steps.RunnerFile -*** BDD Test ended ***
-11:47:24.396 INFO  steps.RunnerFile -------------------------------------------------------------------------------------------------------------------------------------------------------
-11:47:24.397 INFO  steps.RunnerFile -finished
+12:05:47.282 DEBUG steps.RunnerFile -^^^^^^^ after calling Configuration(args) ^^^^^^^^
+12:05:47.293 DEBUG steps.RunnerFile -^^^^^^^^ calling runner.run() ^^^^^^^^

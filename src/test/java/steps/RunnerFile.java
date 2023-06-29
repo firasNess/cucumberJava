@@ -1,6 +1,7 @@
 package steps;
 
 import Screens.ScreensFactory;
+import io.cucumber.core.cli.Main;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.apache.commons.cli.*;
@@ -215,12 +216,13 @@ public class RunnerFile {
             args += " --tags=-in_dev";
 
             log.debug("^^^^^^^ before calling Configuration(args) ^^^^^^^^");
-//            Configuration runnerConfig = new Configuration(args.split(" "));
-//            log.debug("^^^^^^^ after calling Configuration(args) ^^^^^^^^");
-//
-//            log.debug("^^^^^^^^ calling runner.run() ^^^^^^^^");
-//            Runner runner = new Runner(runnerConfig);
-//            failed = runner.run();
+            String[] options = args.split(" ");
+            log.debug("^^^^^^^ after calling Configuration(args) ^^^^^^^^");
+            log.debug("^^^^^^^^ calling runner.run() ^^^^^^^^");
+            int exitStatus = Main.run(options, Thread.currentThread().getContextClassLoader());
+            //Runner runner = new Runner(runnerConfig);
+            // failed = runner.run();
+            failed = (exitStatus != 0);
         } catch (Exception e) {
             log.debug("*** Exception: " + e.getMessage());
             log.debug("Traceback: ");

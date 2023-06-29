@@ -1,0 +1,5 @@
+11:35:41.005 DEBUG steps.RunnerFile -*** Exception: Cannot invoke "java.nio.file.Path.toString()" because the return value of "java.nio.file.Path.getParent()" is null
+11:35:41.016 DEBUG steps.RunnerFile -Traceback: 
+11:35:41.018 INFO  steps.RunnerFile -*** BDD Test ended ***
+11:35:41.019 INFO  steps.RunnerFile -------------------------------------------------------------------------------------------------------------------------------------------------------
+11:35:41.019 INFO  steps.RunnerFile -finished

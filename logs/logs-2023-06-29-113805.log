@@ -1,0 +1,8 @@
+11:38:05.956 INFO  steps.RunnerFile -TEMP Email will be: test@gmail.com
+11:38:05.964 INFO  steps.RunnerFile -*** BDD Setup ended ***
+11:38:05.964 INFO  steps.RunnerFile -------------------------------------------------------------------------------------------------------------------------------------------------------
+11:38:05.964 INFO  steps.RunnerFile -*** Starting Test: chrome test/features/ ***
+11:38:05.965 INFO  steps.RunnerFile -'test' -f allure_behave.formatter:AllureFormatter -o 'C:\Users\LENOVO\Desktop/Results' --junit --junit-directory 'C:\Users\LENOVO\Desktop\Results\junit' --tags=test
+11:38:05.966 DEBUG steps.RunnerFile -^^^^^^^ before calling Configuration(args) ^^^^^^^^
+11:38:05.966 DEBUG steps.RunnerFile -^^^^^^^ after calling Configuration(args) ^^^^^^^^
+11:38:05.971 DEBUG steps.RunnerFile -^^^^^^^^ calling runner.run() ^^^^^^^^

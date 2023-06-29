@@ -1,0 +1,4 @@
+11:30:52.356 INFO  steps.RunnerFile -'new_forms_tests' -f allure_behave.formatter:AllureFormatter -o 'C:\Users\LENOVO\Desktop/Results' --junit --junit-directory 'C:\Users\LENOVO\Desktop\Results\junit' --tags=test
+11:30:52.364 DEBUG steps.RunnerFile -^^^^^^^ before calling Configuration(args) ^^^^^^^^
+11:30:52.364 DEBUG steps.RunnerFile -^^^^^^^ after calling Configuration(args) ^^^^^^^^
+11:30:52.365 DEBUG steps.RunnerFile -^^^^^^^^ calling runner.run() ^^^^^^^^

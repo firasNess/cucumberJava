@@ -1,0 +1,1 @@
+12:04:34.329 INFO  steps.RunnerFile -'test' -f allure_behave.formatter:AllureFormatter -o 'C:\Users\LENOVO\Desktop/Results' --junit --junit-directory 'C:\Users\LENOVO\Desktop\Results\junit' --tags=test
