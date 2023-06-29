@@ -1,2 +1,0 @@
-12:05:47.282 DEBUG steps.RunnerFile -^^^^^^^ after calling Configuration(args) ^^^^^^^^
-12:05:47.293 DEBUG steps.RunnerFile -^^^^^^^^ calling runner.run() ^^^^^^^^

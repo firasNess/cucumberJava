@@ -1,6 +1,0 @@
-11:32:54.046 INFO  steps.RunnerFile -*** Starting Test: chrome features/ ***
-11:32:54.050 DEBUG steps.RunnerFile -*** Exception: Cannot invoke "java.nio.file.Path.toString()" because the return value of "java.nio.file.Path.getParent()" is null
-11:32:54.051 DEBUG steps.RunnerFile -Traceback: 
-11:32:54.052 INFO  steps.RunnerFile -*** BDD Test ended ***
-11:32:54.053 INFO  steps.RunnerFile -------------------------------------------------------------------------------------------------------------------------------------------------------
-11:32:54.054 INFO  steps.RunnerFile -finished

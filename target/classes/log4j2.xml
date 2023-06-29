@@ -4,21 +4,77 @@
         <Property name="basePath">./logs</Property>
     </Properties>
     <Appenders>
-        <RollingFile name="File" fileName="${basePath}/logs.log" filePattern="${basePath}/logs-%d{yyyy-MM-dd-HHmmss}.log">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} -%msg%n"/>
+        <RollingFile name="File_DEBUG" fileName="${basePath}/logs-DEBUG.log"
+                     filePattern="${basePath}/logs-DEBUG-%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="100 KB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="File_INFO" fileName="${basePath}/logs-INFO.log"
+                     filePattern="${basePath}/logs-INFO-%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 KB"/>
+            </Policies>
+        </RollingFile>
+        <!-- Add the rest of the appenders for WARN, ERROR, FATAL, TRACE, and ALL levels here -->
+        <RollingFile name="File_WARN" fileName="${basePath}/logs-WARN.log"
+                     filePattern="${basePath}/logs-WARN-%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 KB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="File_ERROR" fileName="${basePath}/logs-ERROR.log"
+                     filePattern="${basePath}/logs-ERROR-%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 KB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="File_FATAL" fileName="${basePath}/logs-FATAL.log"
+                     filePattern="${basePath}/logs-FATAL-%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="FATAL" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 KB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="File_TRACE" fileName="${basePath}/logs-TRACE.log"
+                     filePattern="${basePath}/logs-TRACE-%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 KB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="File_ALL" fileName="${basePath}/logs-ALL.log"
+                     filePattern="${basePath}/logs-ALL-%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="ALL" onMatch="ACCEPT" onMismatch="ACCEPT"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
+            <Policies>
                 <SizeBasedTriggeringPolicy size="100 KB"/>
             </Policies>
         </RollingFile>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{1} -%msg%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{1} - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="trace">
-            <AppenderRef ref="File"/>
-            <AppenderRef ref="Console"/> <!-- Add this line -->
+        <Root level="ALL">
+            <AppenderRef ref="File_DEBUG"/>
+            <AppenderRef ref="File_INFO"/>
+            <AppenderRef ref="File_WARN"/>
+            <AppenderRef ref="File_ERROR"/>
+            <AppenderRef ref="File_FATAL"/>
+            <AppenderRef ref="File_TRACE"/>
+            <AppenderRef ref="File_ALL"/>
+            <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
 </Configuration>

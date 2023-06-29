@@ -1,5 +1,0 @@
-11:13:44.763 ERROR steps.RunnerFile -Missing bdd_args in arguments passed to the test.
-11:13:44.773 INFO  steps.RunnerFile -*** BDD Setup ended ***
-11:13:44.773 INFO  steps.RunnerFile -------------------------------------------------------------------------------------------------------------------------------------------------------
-11:13:44.774 ERROR steps.RunnerFile -Test() exited with exception java.lang.NullPointerException: Cannot invoke "java.util.Map.getOrDefault(Object, Object)" because "optDict" is null
-11:13:44.775 INFO  steps.RunnerFile -finished

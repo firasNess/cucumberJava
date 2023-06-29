@@ -15,6 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -154,7 +156,6 @@ public class RunnerFile {
 
             Map<String, Object> result = readOptions(parser, args, "results_path");
             context.setVariables("results_path", result);
-
             context.setVariables("failure_screenshot",  result+"/screenshot_after_failure.png");
             context.setVariables("headless",options.getOrDefault("headless",false).equals(true));
             context.setVariables("private_mode",options.getOrDefault("private_mode",false).equals(true));
@@ -199,29 +200,31 @@ public class RunnerFile {
             Map<String, Object> result_path = (Map<String, Object>) context.getVariables("results_path");
             Path junitResults = Paths.get((String) result_path.get("results_path")).resolve("junit");
             Files.createDirectories(junitResults);
-            String args = "'" + f + "' -f allure_behave.formatter:AllureFormatter -o '" + result_path.get("results_path") + "' --junit --junit-directory '" + junitResults + "'";
-
-
+            String tags_arg = "";
             if (optDict.containsKey("tags")) {
-                String toJoin = " --tags=";
+                String toJoin = " --tags ";
                 String tagsFromArgs = (String) optDict.get("tags");
                 String splitBy = "&";
                 if (tagsFromArgs.contains("|")) {
                     toJoin = ",";
                     splitBy = "\\|";
                 }
-                args += " --tags=" + String.join(toJoin, tagsFromArgs.split(splitBy));
+                tags_arg += " --tags " + String.join(toJoin, tagsFromArgs.split(splitBy));
             }
-            log.info(args);
-            args += " --tags=-in_dev";
+            log.info(tags_arg);
+            String args = f + " -p pretty --plugin junit:"+junitResults+"/results.xml"+tags_arg;
 
             log.debug("^^^^^^^ before calling Configuration(args) ^^^^^^^^");
             String[] options = args.split(" ");
+
+            ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(options));
+            arrayList.add("--tags");
+            arrayList.add("not @in_dev");
+            options = arrayList.toArray(new String[arrayList.size()]);
+
             log.debug("^^^^^^^ after calling Configuration(args) ^^^^^^^^");
             log.debug("^^^^^^^^ calling runner.run() ^^^^^^^^");
             int exitStatus = Main.run(options, Thread.currentThread().getContextClassLoader());
-            //Runner runner = new Runner(runnerConfig);
-            // failed = runner.run();
             failed = (exitStatus != 0);
         } catch (Exception e) {
             log.debug("*** Exception: " + e.getMessage());

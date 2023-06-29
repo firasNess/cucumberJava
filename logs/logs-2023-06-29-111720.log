@@ -1,5 +1,0 @@
-11:17:20.525 INFO  steps.RunnerFile -'new_forms_tests' -f allure_behave.formatter:AllureFormatter -o 'C:\Users\LENOVO\Desktop/Results' --junit --junit-directory 'C:\Users\LENOVO\Desktop\Results\junit' --tags=test
-11:17:20.539 DEBUG steps.RunnerFile -^^^^^^^ before calling Configuration(args) ^^^^^^^^
-11:17:20.540 INFO  steps.RunnerFile -*** BDD Test ended ***
-11:17:20.541 INFO  steps.RunnerFile -------------------------------------------------------------------------------------------------------------------------------------------------------
-11:17:20.541 INFO  steps.RunnerFile -finished

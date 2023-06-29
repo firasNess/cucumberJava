@@ -1,5 +1,0 @@
-11:20:28.856 DEBUG steps.RunnerFile -*** Exception: null
-11:20:28.866 DEBUG steps.RunnerFile -Traceback: 
-11:20:28.870 INFO  steps.RunnerFile -*** BDD Test ended ***
-11:20:28.870 INFO  steps.RunnerFile -------------------------------------------------------------------------------------------------------------------------------------------------------
-11:20:28.871 INFO  steps.RunnerFile -finished
