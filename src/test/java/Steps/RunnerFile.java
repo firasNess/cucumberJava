@@ -1,4 +1,4 @@
-package steps;
+package Steps;
 
 import Screens.ScreensFactory;
 import io.cucumber.core.cli.Main;
@@ -8,7 +8,7 @@ import org.apache.commons.cli.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.runner.RunWith;
-import packages.Context;
+import Packages.Context;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,7 +24,7 @@ import java.util.Map;
 @CucumberOptions(
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
         monochrome = true,
-        glue = "steps"
+        glue = "Steps"
 )
 
 

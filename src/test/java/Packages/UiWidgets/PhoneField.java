@@ -1,4 +1,4 @@
-package packages.ui_widgets;
+package Packages.UiWidgets;
 
 public class PhoneField {
 }

@@ -1,4 +1,4 @@
-package steps.widgets_steps;
+package Steps.WidgetsSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -6,8 +6,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import packages.ui_widgets.Dropdown;
-import packages.ui_widgets.TextField;
+import Packages.UiWidgets.Dropdown;
+import Packages.UiWidgets.TextField;
 import static org.junit.Assert.assertEquals;
 
 

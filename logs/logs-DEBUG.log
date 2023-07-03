@@ -1,22 +1,22 @@
-14:41:58.285 INFO  steps.RunnerFile - TEMP Email will be: test@gmail.com
-14:41:58.287 INFO  steps.RunnerFile - *** BDD Setup ended ***
-14:41:58.287 INFO  steps.RunnerFile - ------------------------------------------------------------------------------------------------------------------------------------------------------
-14:41:58.288 INFO  steps.RunnerFile - *** Starting Test: chrome src/test/features ***
-14:41:58.288 INFO  steps.RunnerFile - 
-14:41:58.289 DEBUG steps.RunnerFile - ^^^^^^^ before calling Configuration(args) ^^^^^^^^
-14:41:58.289 DEBUG steps.RunnerFile - ^^^^^^^ after calling Configuration(args) ^^^^^^^^
-14:41:58.290 DEBUG steps.RunnerFile - ^^^^^^^^ calling runner.run() ^^^^^^^^
-14:42:10.189 INFO  steps.RunnerFile - *** BDD Test ended ***
-14:42:10.191 INFO  steps.RunnerFile - ------------------------------------------------------------------------------------------------------------------------------------------------------
-14:42:10.192 INFO  steps.RunnerFile - finished
-14:42:39.081 INFO  steps.RunnerFile - TEMP Email will be: test@gmail.com
-14:42:39.083 INFO  steps.RunnerFile - *** BDD Setup ended ***
-14:42:39.083 INFO  steps.RunnerFile - ------------------------------------------------------------------------------------------------------------------------------------------------------
-14:42:39.084 INFO  steps.RunnerFile - *** Starting Test: chrome src/test/features ***
-14:42:39.085 INFO  steps.RunnerFile - 
-14:42:39.085 DEBUG steps.RunnerFile - ^^^^^^^ before calling Configuration(args) ^^^^^^^^
-14:42:39.085 DEBUG steps.RunnerFile - ^^^^^^^ after calling Configuration(args) ^^^^^^^^
-14:42:39.085 DEBUG steps.RunnerFile - ^^^^^^^^ calling runner.run() ^^^^^^^^
-14:42:53.558 INFO  steps.RunnerFile - *** BDD Test ended ***
-14:42:53.558 INFO  steps.RunnerFile - ------------------------------------------------------------------------------------------------------------------------------------------------------
-14:42:53.558 INFO  steps.RunnerFile - finished
+14:41:58.285 INFO  Steps.RunnerFile - TEMP Email will be: test@gmail.com
+14:41:58.287 INFO  Steps.RunnerFile - *** BDD Setup ended ***
+14:41:58.287 INFO  Steps.RunnerFile - ------------------------------------------------------------------------------------------------------------------------------------------------------
+14:41:58.288 INFO  Steps.RunnerFile - *** Starting Test: chrome src/test/features ***
+14:41:58.288 INFO  Steps.RunnerFile -
+14:41:58.289 DEBUG Steps.RunnerFile - ^^^^^^^ before calling Configuration(args) ^^^^^^^^
+14:41:58.289 DEBUG Steps.RunnerFile - ^^^^^^^ after calling Configuration(args) ^^^^^^^^
+14:41:58.290 DEBUG Steps.RunnerFile - ^^^^^^^^ calling runner.run() ^^^^^^^^
+14:42:10.189 INFO  Steps.RunnerFile - *** BDD Test ended ***
+14:42:10.191 INFO  Steps.RunnerFile - ------------------------------------------------------------------------------------------------------------------------------------------------------
+14:42:10.192 INFO  Steps.RunnerFile - finished
+14:42:39.081 INFO  Steps.RunnerFile - TEMP Email will be: test@gmail.com
+14:42:39.083 INFO  Steps.RunnerFile - *** BDD Setup ended ***
+14:42:39.083 INFO  Steps.RunnerFile - ------------------------------------------------------------------------------------------------------------------------------------------------------
+14:42:39.084 INFO  Steps.RunnerFile - *** Starting Test: chrome src/test/features ***
+14:42:39.085 INFO  Steps.RunnerFile -
+14:42:39.085 DEBUG Steps.RunnerFile - ^^^^^^^ before calling Configuration(args) ^^^^^^^^
+14:42:39.085 DEBUG Steps.RunnerFile - ^^^^^^^ after calling Configuration(args) ^^^^^^^^
+14:42:39.085 DEBUG Steps.RunnerFile - ^^^^^^^^ calling runner.run() ^^^^^^^^
+14:42:53.558 INFO  Steps.RunnerFile - *** BDD Test ended ***
+14:42:53.558 INFO  Steps.RunnerFile - ------------------------------------------------------------------------------------------------------------------------------------------------------
+14:42:53.558 INFO  Steps.RunnerFile - finished
