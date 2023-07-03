@@ -1,4 +1,4 @@
-package Packages.UiWidgets;
+package packages.uiwidgets;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
