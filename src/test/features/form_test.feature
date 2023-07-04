@@ -1,7 +1,6 @@
 Feature: CucumberJava
-  @in_dev
+#  @in_dev
   Scenario: Login functionality exists -skipped test
-    Given I have open the browser
     When I open PlanningInformation Form
     When I pick "052" in "טלפון נייד"
     When I write "פראס" in "שם פרטי"
@@ -9,10 +8,8 @@ Feature: CucumberJava
     When I write "firas.abu.sneneh@hotmail.com" in "דוא"
     Then Validate "שם פרטי" text is "פראס"
     Then Clear "שם פרטי" text
-    Then Close the chrome
 
   Scenario: Login functionality exists -not skipped test
-    Given I have open the browser
     When I open PlanningInformation Form
     When I pick "054" in "טלפון נייד"
     When I write "sdfsd" in "שם פרטי"
@@ -21,6 +18,5 @@ Feature: CucumberJava
     Then Validate "שם פרטי" text is "sdfsd"
     Then Clear "שם פרטי" text
 #
-    Then Close the chrome
 
 

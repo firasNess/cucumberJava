@@ -1,6 +1,5 @@
 package steps;
 
-import screens.ScreensFactory;
 import io.cucumber.core.cli.Main;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -9,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.runner.RunWith;
 import packages.Context;
+import screens.ScreensFactory;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,6 +33,7 @@ public class RunnerFile {
     private static final Logger log = LogManager.getLogger(RunnerFile.class.getName());
     private static int  exit_code;
     static Context context = Context.getInstance();
+    static Map<String, Object> result_path ;
 
     private static String logLineBuilder(){
         return "-".repeat(150);
@@ -196,7 +198,7 @@ public class RunnerFile {
         try {
             f = Paths.get(f).getParent().toString();
 
-            Map<String, Object> result_path = (Map<String, Object>) context.getVariables("results_path");
+            result_path = (Map<String, Object>) context.getVariables("results_path");
             Path junitResults = Paths.get((String) result_path.get("results_path")).resolve("junit");
             Files.createDirectories(junitResults);
             String tags_arg = "";
@@ -237,8 +239,25 @@ public class RunnerFile {
         }
 
     }
+    public static void generateAllureReport() throws IOException, InterruptedException {
+        String allureExecutable = ".allure/allure-2.20.1/bin/allure.bat"; // Path to the Allure executable (allure.bat or allure.sh)
+        String reportFolderPath = Paths.get((String) result_path.get("results_path")) + "/report";
 
-    public static void main(String[] args) {
+        // Generate Allure report
+        String generateCommand = String.format("%s generate %s --clean -o %s", allureExecutable,Paths.get((String) result_path.get("results_path"))+ "/junit" , reportFolderPath);
+        log.info("Generate Allure report command: " + generateCommand);
+        Process generateProcess = Runtime.getRuntime().exec(generateCommand);
+        generateProcess.waitFor();
+
+        // Open Allure report
+        String openCommand = String.format("%s open %s", allureExecutable, reportFolderPath);
+        log.info("Open Allure report command: " + openCommand);
+    }
+    private static void teardown() throws IOException, InterruptedException {
+        generateAllureReport();
+    }
+
+    public static void main(String[] args) throws IOException, InterruptedException {
         try {
             exit_code = 0;
             setup(args);
@@ -251,10 +270,12 @@ public class RunnerFile {
             log.error("Test() exited with exception "+ e);
             exit_code =4;
         }
-        //teardown()
+        teardown();
         log.info("finished");
         System.exit(exit_code);
     }
+
+
 
 
 }

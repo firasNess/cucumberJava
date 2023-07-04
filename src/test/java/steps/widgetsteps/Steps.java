@@ -6,24 +6,17 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import packages.Context;
 import packages.uiwidgets.Dropdown;
 import packages.uiwidgets.TextField;
 import static org.junit.Assert.assertEquals;
 
 
 public class Steps {
-    WebDriver driver = null;
+    static Context context = Context.getInstance();
+    WebDriver driver = (WebDriver) context.getVariables("driver");
 
-    @Given("^I have open the browser$")
-    public void openBrowser() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-
-    }
-
-    @When("^I open PlanningInformation Form")
+    @Given("^I open PlanningInformation Form")
     public void goToGoogle() {
         driver.navigate().to("https://jeronlineforms.jerusalem.muni.il/PlanningInformation");
     }

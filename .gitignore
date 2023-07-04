@@ -1,0 +1,13 @@
+
+*.js
+*.csv
+*.json
+*.txt
+*.html
+*.ico
+*.css
+*.log
+*.log
+target/*
+target/test-classes/Screens/ScreensFactory.class
+target/test-classes/steps/RunnerFile.class
