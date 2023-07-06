@@ -11,3 +11,4 @@
 target/*
 target/test-classes/Screens/ScreensFactory.class
 target/test-classes/steps/RunnerFile.class
+target/classes/log4j2.xml

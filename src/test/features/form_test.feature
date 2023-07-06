@@ -1,5 +1,5 @@
 Feature: CucumberJava
-#  @in_dev
+
   Scenario: Login functionality exists -skipped test
     When I open PlanningInformation Form
     When I pick "052" in "טלפון נייד"
@@ -9,6 +9,7 @@ Feature: CucumberJava
     Then Validate "שם פרטי" text is "פראס"
     Then Clear "שם פרטי" text
 
+
   Scenario: Login functionality exists -not skipped test
     When I open PlanningInformation Form
     When I pick "054" in "טלפון נייד"
@@ -17,6 +18,6 @@ Feature: CucumberJava
     When I write "sdfsdfsdf" in "דוא"
     Then Validate "שם פרטי" text is "sdfsd"
     Then Clear "שם פרטי" text
-#
+
 
 

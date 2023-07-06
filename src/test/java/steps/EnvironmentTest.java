@@ -1,30 +1,22 @@
 package steps;
 
 import io.cucumber.java.*;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import packages.Context;
+
+
 
 public class EnvironmentTest extends RunnerFile {
     private static final Logger log = LogManager.getLogger(RunnerFile.class.getName());
-    static Context context = Context.getInstance();
 
-    @Before
+
+    @BeforeAll
     //todo: make it before all
     public static void beforeAllSteps() throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        WebDriver driver = new ChromeDriver(options);
-        context.setVariables("driver", driver);
-        Thread.sleep(1000);
+        JMChromeWebDriver.getDriver();
     }
     @Before
-    public void beforeScenario(Scenario scenario) {
+    public void beforeScenario(Scenario scenario) throws InterruptedException {
         log.info("Before scenario: " + scenario.getName());
         // Additional setup logic for each scenario
     }
@@ -48,14 +40,10 @@ public class EnvironmentTest extends RunnerFile {
         // Additional cleanup logic for each step
     }
 
-    @After
+    @AfterAll
     //todo: make it after all
     public static void afterAllSteps() {
-        if (context.getVariables("driver") != null){
-            WebDriver driver = (WebDriver) context.getVariables("driver");
-            driver.quit();
-            log.info("----- Closing The Browser -----");
-        }
+        JMChromeWebDriver.quitDriver();
 
     }
 
