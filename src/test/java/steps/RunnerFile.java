@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import org.junit.runner.RunWith;
 import packages.Context;
 import screens.ScreensFactory;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

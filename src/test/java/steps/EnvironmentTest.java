@@ -11,7 +11,7 @@ public class EnvironmentTest extends RunnerFile {
 
 
     @BeforeAll
-    public static void beforeAllSteps() throws InterruptedException {
+    public static void beforeAllSteps() {
         JMChromeWebDriver.getDriver();
     }
 

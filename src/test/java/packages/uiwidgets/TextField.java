@@ -1,15 +1,17 @@
 package packages.uiwidgets;
 import org.openqa.selenium.*;
 
+import java.time.Duration;
+
 
 public class TextField extends BaseWidget{
 
-    public TextField(String label, WebDriver driver) throws InterruptedException {
+    public TextField(String label, WebDriver driver) {
         super(label, driver);
         this.webElement = getLocator(label, driver);
     }
-    public WebElement getLocator(String label, WebDriver driver) throws InterruptedException {
-        Thread.sleep(1000);
+    public WebElement getLocator(String label, WebDriver driver) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         String value = String.format("//label[contains(text(), '%s')]/following-sibling::input",label);
         return driver.findElement(By.xpath(value));
     }

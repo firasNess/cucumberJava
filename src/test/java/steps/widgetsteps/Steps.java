@@ -11,6 +11,8 @@ import packages.uiwidgets.Dropdown;
 import packages.uiwidgets.TextField;
 import steps.RunnerFile;
 
+import java.time.Duration;
+
 import static org.junit.Assert.assertEquals;
 
 
@@ -41,21 +43,21 @@ public class Steps {
 
 
     @When("I write {string} in {string}")
-    public void iWriteIn(String text, String label) throws InterruptedException {
+    public void iWriteIn(String text, String label) {
         TextField textfield = new TextField(label, this.driver);
         textfield.setText(text);
     }
 
     @Then("Validate {string} text is {string}")
-    public void validateTextIs(String label, String text) throws InterruptedException {
+    public void validateTextIs(String label, String text) {
         TextField textfield = new TextField(label, this.driver);
         Boolean checker = textfield.validate_text(text);
         assertEquals(true, checker);
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Then("Clear {string} text")
-    public void clearText(String label) throws InterruptedException {
+    public void clearText(String label) {
         TextField textfield = new TextField(label, this.driver);
         textfield.clear();
     }
@@ -63,12 +65,13 @@ public class Steps {
 
 
     @When("I pick {string} in {string}")
-    public void iPickIn(String preNumber , String label) throws InterruptedException {
-        Thread.sleep(3000);
+    public void iPickIn(String preNumber , String label) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         Dropdown drop = new Dropdown(label, driver);
         drop.clickButton();
         drop.selectElement(preNumber);
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 
     }
 }
