@@ -214,6 +214,9 @@ public class RunnerFile {
             }
             log.info(tags_arg);
             String args = f + " -p pretty --plugin junit:"+junitResults+"/results.xml"+tags_arg;
+            //String args = "-p pretty --plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm --plugin junit:" + junitResults + "/results.xml " + tags_arg;
+
+
 
             log.debug("^^^^^^^ before calling Configuration(args) ^^^^^^^^");
             String[] options = args.split(" ");

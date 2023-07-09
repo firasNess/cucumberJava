@@ -11,7 +11,6 @@ public class EnvironmentTest extends RunnerFile {
 
 
     @BeforeAll
-    //todo: make it before all
     public static void beforeAllSteps() throws InterruptedException {
         JMChromeWebDriver.getDriver();
     }
@@ -41,7 +40,6 @@ public class EnvironmentTest extends RunnerFile {
     }
 
     @AfterAll
-    //todo: make it after all
     public static void afterAllSteps() {
         JMChromeWebDriver.quitDriver();
 
