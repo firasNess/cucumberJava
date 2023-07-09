@@ -17,9 +17,10 @@ public class JMChromeWebDriver {
     private static final Logger log = LogManager.getLogger(RunnerFile.class.getName());
 
     static Context context = Context.getInstance();
+    static CustomDriver customDriver;
 
 
-    public static WebDriver getDriver(){
+    public static CustomDriver getDriver(){
         if (context.getVariables("driver") == null) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
@@ -34,18 +35,19 @@ public class JMChromeWebDriver {
             }
             options.addArguments("--remote-allow-origins=*");
             driver = new ChromeDriver(options);
-            context.setVariables("driver", driver);
+            customDriver = new CustomDriver(driver);
+            context.setVariables("driver", customDriver);
             options.addArguments("--remote-debugging-port=9222");
             options.addArguments("--no-proxy-server");
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         }
-        return (WebDriver) context.getVariables("driver");
+        return (CustomDriver) context.getVariables("driver");
     }
 
     public static void quitDriver() {
         if (context.getVariables("driver") != null){
-            WebDriver driver = (WebDriver) context.getVariables("driver");
+            CustomDriver driver = (CustomDriver) context.getVariables("driver");
             driver.quit();
             log.info("----- Closing The Browser -----");
         }
