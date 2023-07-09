@@ -27,6 +27,6 @@ public class TextField extends BaseWidget{
 
     public void setText(String text) { driver.sendData(this.webElement, text,this.label,true); }
 
-    public void clear( ) { this.webElement.clear(); }
+    public void clear( ) { driver.clearData(this.webElement, label); }
 
 }

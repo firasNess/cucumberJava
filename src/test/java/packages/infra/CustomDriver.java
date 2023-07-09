@@ -312,6 +312,12 @@ public class CustomDriver {
         }
     }
 
+    public void clearData(WebElement element, String info) {
+        element.clear();
+        log.info("cleared element :: " + info);
+
+    }
+
     /***
      * Send Keys to element with locator
      * @param locator - locator strategy, id=>example, name=>example, css=>#example,

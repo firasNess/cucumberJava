@@ -4,8 +4,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
 import packages.Context;
 import packages.infra.CustomDriver;
 import packages.uiwidgets.Dropdown;
@@ -47,7 +45,6 @@ public class Steps {
         TextField textfield = new TextField(label, customDriver);
         Boolean checker = textfield.validate_text(text);
         assertEquals(true, checker);
-        customDriver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Then("Clear {string} text")

@@ -26,18 +26,16 @@ public class Dropdown extends BaseWidget {
     public void clickButton() {
 
         WebElement dropDownOpen = this.webElement.findElement(By.xpath("./..//p-dropdown/div"));
-        String dropDownExpanded = dropDownOpen.getAttribute("open");
+        String dropDownExpanded = driver.getElementAttributeValue(dropDownOpen,"open");
         if (dropDownExpanded == null || dropDownExpanded.equals("false")) {
             dropDownOpen.click();
         }
 
     }
 
-    public void selectElement(String pre) throws InterruptedException {
-
+    public void selectElement(String pre) {
         WebDriverWait wait = new WebDriverWait(driver.driver, 15);
         List<WebElement> listOfItems = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(".//ul//p-dropdownitem")));
-        //List<WebElement> listOfItems = driver.driver.findElements(By.xpath(".//ul//p-dropdownitem"));
         for (WebElement item : listOfItems) {
             if (item.getText().equals(pre)) {
                 driver.elementClick(item,label);
