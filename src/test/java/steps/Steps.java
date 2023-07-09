@@ -40,6 +40,7 @@ public class Steps {
         textfield.setText(text);
     }
 
+    //todo: checkPiont method should be in after all
     @Then("Validate {string} text is {string}")
     public void validateTextIs(String label, String text) {
         TextField textfield = new TextField(label, customDriver);

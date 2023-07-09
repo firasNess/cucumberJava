@@ -5,8 +5,9 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import packages.RunnerFile;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class CheckPoint {
     public static HashMap<String, String> resultMap = new HashMap<String, String>();
@@ -49,22 +50,24 @@ public class CheckPoint {
         }
     }
 
+    //todo: need more fix
     public static void markFinal() {
-        ArrayList<String> resultList = new ArrayList<String>();
 
-        for (String key: resultMap.keySet()) {
-            resultList.add(resultMap.get(key));
-        }
+        Iterator<Map.Entry<String, String>> iterator = resultMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> entry = iterator.next();
+            String key = entry.getKey();
+            String value = entry.getValue();
 
-        for (int i = 0; i < resultList.size(); i++) {
-            if (resultList.contains(FAIL)) {
-                log.info("Test Method Failed");
-                Assert.fail();
+            if (value.equals("FAIL")) {
+                log.info(String.format("The step: %s is Failed", key));
+                Assert.assertTrue(false);
             } else {
-                log.info("Test Method Successful");
+                log.info(String.format("The step: %s is Passed", key));
                 Assert.assertTrue(true);
             }
         }
+
     }
 }
 
