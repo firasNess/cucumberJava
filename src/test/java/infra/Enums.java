@@ -1,6 +1,6 @@
 package infra;
 
-public class enums {
+public class Enums {
     public enum UIStyle {
         OLD(1),
         NEW(2);
