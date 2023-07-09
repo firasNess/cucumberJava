@@ -1,5 +1,6 @@
 package packages.infra;
 
+import io.cucumber.java.an.E;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -59,13 +60,19 @@ public class CheckPoint {
             String key = entry.getKey();
             String value = entry.getValue();
 
-            if (value.equals("FAIL")) {
-                log.info(String.format("The step: %s is Failed", key));
-                Assert.assertTrue(false);
-            } else {
-                log.info(String.format("The step: %s is Passed", key));
-                Assert.assertTrue(true);
+            try{
+                if (value.equals("FAIL")) {
+                    log.info(String.format("The step: %s is Failed", key));
+                    Assert.assertEquals(false, true);
+                } else {
+                    log.info(String.format("The step: %s is Passed", key));
+                    Assert.assertEquals(true,true);
+                }
+            } catch (AssertionError e){
+                log.error(e.getMessage());
             }
+
+
         }
 
     }

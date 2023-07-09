@@ -6,7 +6,7 @@ Feature: CucumberJava
     When I write "פראס" in "שם פרטי"
     When I write "אבו סנינה" in "שם משפחה"
     When I write "firas.abu.sneneh@hotmail.com" in "דוא"
-    Then Validate "שם פרטי" text is "פראס"
+    Then Validate "שם פרטי" text is "df"
     Then Clear "שם פרטי" text
 
 

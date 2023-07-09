@@ -45,7 +45,7 @@ public class Steps {
     public void validateTextIs(String label, String text) {
         TextField textfield = new TextField(label, customDriver);
         CheckPoint.mark(String.format("Validate {%s} text is {%s}", label,text),textfield.validate_text(text));
-        CheckPoint.markFinal();
+
     }
 
     @Then("Clear {string} text")

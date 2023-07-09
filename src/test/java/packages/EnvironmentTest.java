@@ -19,6 +19,7 @@ public class EnvironmentTest extends RunnerFile {
 
     @AfterAll
     public static void afterAllSteps() {
+        CheckPoint.markFinal();
         JMChromeWebDriver.quitDriver();
 
     }
