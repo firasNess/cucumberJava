@@ -1,6 +1,10 @@
 package packages.infra;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
+import packages.RunnerFile;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,6 +12,8 @@ public class CheckPoint {
     public static HashMap<String, String> resultMap = new HashMap<String, String>();
     private static String PASS = "PASS";
     private static String FAIL = "FAIL";
+    private static final Logger log = LogManager.getLogger(RunnerFile.class.getName());
+
 
     /***
      * Clears the results hash map
@@ -37,27 +43,13 @@ public class CheckPoint {
                 setStatus(mapKey, FAIL);
             }
         } catch (Exception e) {
-            System.out.println("Exception Occurred...");
+            log.error("Exception Occurred...");
             setStatus(mapKey, FAIL);
             e.printStackTrace();
         }
     }
 
-    public static void markFinal(String testName, boolean result, String resultMessage) {
-        testName = testName.toLowerCase();
-        String mapKey = testName + "." + resultMessage;
-        try {
-            if (result) {
-                setStatus(mapKey, PASS);
-            } else {
-                setStatus(mapKey, FAIL);
-            }
-        } catch (Exception e) {
-            System.out.println("Exception Occurred...");
-            setStatus(mapKey, FAIL);
-            e.printStackTrace();
-        }
-
+    public static void markFinal() {
         ArrayList<String> resultList = new ArrayList<String>();
 
         for (String key: resultMap.keySet()) {
@@ -66,10 +58,10 @@ public class CheckPoint {
 
         for (int i = 0; i < resultList.size(); i++) {
             if (resultList.contains(FAIL)) {
-                System.out.println("Test Method Failed");
+                log.info("Test Method Failed");
                 Assert.fail();
             } else {
-                System.out.println("Test Method Successful");
+                log.info("Test Method Successful");
                 Assert.assertTrue(true);
             }
         }

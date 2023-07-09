@@ -3,7 +3,6 @@ package packages.infra;
 import com.google.common.collect.Ordering;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

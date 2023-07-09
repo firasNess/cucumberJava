@@ -9,9 +9,7 @@ import packages.infra.CustomDriver;
 import packages.uiwidgets.Dropdown;
 import packages.uiwidgets.TextField;
 import packages.RunnerFile;
-
 import java.time.Duration;
-
 import static org.junit.Assert.assertEquals;
 
 
