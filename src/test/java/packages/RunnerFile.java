@@ -33,9 +33,6 @@ public class RunnerFile {
     static Context context = Context.getInstance();
     static Map<String, Object> result_path ;
 
-    private static String logLineBuilder(){
-        return "-".repeat(150);
-    }
 
     public static Map<String, Object> readOptions(CommandLineParser parser, String[] args, String args_type) throws Exception {
         Options options = new Options();
@@ -263,10 +260,10 @@ public class RunnerFile {
             exit_code = 0;
             setup(args);
             log.info("*** BDD Setup ended ***");
-            log.info(logLineBuilder());
+            log.info("-".repeat(150));
             test();
             log.info("*** BDD Test ended ***");
-            log.info(logLineBuilder());
+            log.info("-".repeat(150));
         }catch (Exception e){
             log.error("Test() exited with exception "+ e);
             exit_code =4;
