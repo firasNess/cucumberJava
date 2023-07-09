@@ -5,6 +5,7 @@ import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import packages.Context;
+import packages.infra.CheckPoint;
 import packages.infra.CustomDriver;
 import packages.uiwidgets.Dropdown;
 import packages.uiwidgets.TextField;
@@ -17,6 +18,7 @@ public class Steps {
     static Context context = Context.getInstance();
     CustomDriver customDriver = (CustomDriver) context.getVariables("driver");
     private static final Logger log = LogManager.getLogger(RunnerFile.class.getName());
+
 
 
     @Given("^I open PlanningInformation Form")
@@ -41,8 +43,8 @@ public class Steps {
     @Then("Validate {string} text is {string}")
     public void validateTextIs(String label, String text) {
         TextField textfield = new TextField(label, customDriver);
-        Boolean checker = textfield.validate_text(text);
-        assertEquals(true, checker);
+        CheckPoint.mark(String.format("Validate {%s} text is {%s}", label,text),textfield.validate_text(text));
+        CheckPoint.markFinal();
     }
 
     @Then("Clear {string} text")

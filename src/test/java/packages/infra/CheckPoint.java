@@ -33,9 +33,9 @@ public class CheckPoint {
         System.out.println(mapKey + " :-> " + resultMap.get(mapKey));
     }
 
-    public static void mark(String testName, boolean result, String resultMessage) {
+    public static void mark(String testName, boolean result) {
         testName = testName.toLowerCase();
-        String mapKey = testName + "." + resultMessage;
+        String mapKey = testName;
         try {
             if (result) {
                 setStatus(mapKey, PASS);
