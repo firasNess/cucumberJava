@@ -14,30 +14,6 @@ public class EnvironmentTest extends RunnerFile {
     public static void beforeAllSteps() throws InterruptedException {
         JMChromeWebDriver.getDriver();
     }
-    @Before
-    public void beforeScenario(Scenario scenario) throws InterruptedException {
-        log.info("Before scenario: " + scenario.getName());
-        // Additional setup logic for each scenario
-    }
-
-    @After
-    public void afterScenario(Scenario scenario) {
-        log.info("After scenario: " + scenario.getName());
-        // Additional cleanup logic for each scenario
-    }
-
-    @BeforeStep
-    public void beforeStep(Scenario scenario) {
-        //String step = ((TestCase) ((TestCaseState) scenario.delegate).testCase).testSteps.get(scenario.getLine()).getStepText();
-        log.info("----- Start Step - {step.name} -----");
-        // Additional setup logic for each step
-    }
-
-    @AfterStep
-    public void afterStep() {
-        log.info("----- End Step - {step.name} -----");
-        // Additional cleanup logic for each step
-    }
 
     @AfterAll
     public static void afterAllSteps() {
