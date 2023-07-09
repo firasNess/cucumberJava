@@ -1,4 +1,4 @@
-package steps;
+package packages.infra;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import packages.Context;
+import packages.RunnerFile;
+
 import java.time.Duration;
 
 
@@ -27,7 +29,7 @@ public class JMChromeWebDriver {
                 options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36");
 
             }
-            if((boolean) context.getVariables("private")){
+            if((boolean) context.getVariables("private_mode")){
                 options.addArguments("--incognito");
             }
             options.addArguments("--remote-allow-origins=*");

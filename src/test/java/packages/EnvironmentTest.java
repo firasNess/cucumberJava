@@ -1,9 +1,9 @@
-package steps;
+package packages;
 
+import packages.infra.JMChromeWebDriver;
 import io.cucumber.java.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 
 public class EnvironmentTest extends RunnerFile {

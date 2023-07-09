@@ -1,7 +1,6 @@
-package infra;
+package packages.infra;
 
 import org.testng.Assert;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

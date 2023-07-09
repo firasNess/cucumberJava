@@ -1,4 +1,4 @@
-package steps;
+package packages;
 
 import io.cucumber.core.cli.Main;
 import io.cucumber.junit.Cucumber;
@@ -7,7 +7,6 @@ import org.apache.commons.cli.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.runner.RunWith;
-import packages.Context;
 import screens.ScreensFactory;
 import java.io.IOException;
 import java.nio.file.Files;

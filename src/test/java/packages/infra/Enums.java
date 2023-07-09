@@ -1,4 +1,4 @@
-package infra;
+package packages.infra;
 
 public class Enums {
     public enum UIStyle {

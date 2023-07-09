@@ -1,4 +1,4 @@
-package steps.widgetsteps;
+package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import packages.Context;
 import packages.uiwidgets.Dropdown;
 import packages.uiwidgets.TextField;
-import steps.RunnerFile;
+import packages.RunnerFile;
 
 import java.time.Duration;
 
@@ -69,8 +69,9 @@ public class Steps {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         Dropdown drop = new Dropdown(label, driver);
         drop.clickButton();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         drop.selectElement(preNumber);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 
 
     }
