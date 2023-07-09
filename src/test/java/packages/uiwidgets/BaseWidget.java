@@ -1,18 +1,17 @@
 package packages.uiwidgets;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 
 public abstract class BaseWidget {
     protected String label;
-    protected WebDriver driver;
+
     protected WebElement webElement;
 
 
-    public BaseWidget(String label, WebDriver driver) {
+    public BaseWidget(String label) {
         this.label = label;
-        this.driver = driver;
         initWidgetConstants();
     }
 

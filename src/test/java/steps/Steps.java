@@ -27,8 +27,7 @@ public class Steps {
     public void goToGoogle() {
         customDriver.navigate("https://jeronlineforms.jerusalem.muni.il/PlanningInformation");
         try{
-            Alert alert = customDriver.driver.switchTo().alert();
-            alert.accept();
+            customDriver.acceptAlert();
         }
         catch (Exception e){
             log.info("Alert Not available");
@@ -37,21 +36,15 @@ public class Steps {
     }
 
 
-    @Then("^Close the chrome$")
-    public void closeChrome( ) {
-        customDriver.driver.quit();
-    }
-
-
     @When("I write {string} in {string}")
     public void iWriteIn(String text, String label) {
-        TextField textfield = new TextField(label, customDriver.driver);
+        TextField textfield = new TextField(label, customDriver);
         textfield.setText(text);
     }
 
     @Then("Validate {string} text is {string}")
     public void validateTextIs(String label, String text) {
-        TextField textfield = new TextField(label, customDriver.driver);
+        TextField textfield = new TextField(label, customDriver);
         Boolean checker = textfield.validate_text(text);
         assertEquals(true, checker);
         customDriver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -59,16 +52,16 @@ public class Steps {
 
     @Then("Clear {string} text")
     public void clearText(String label) {
-        TextField textfield = new TextField(label, customDriver.driver);
+        TextField textfield = new TextField(label, customDriver);
         textfield.clear();
     }
 
 
 
     @When("I pick {string} in {string}")
-    public void iPickIn(String preNumber , String label) {
+    public void iPickIn(String preNumber , String label) throws InterruptedException {
         customDriver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        Dropdown drop = new Dropdown(label, customDriver.driver);
+        Dropdown drop = new Dropdown(label, customDriver);
         drop.clickButton();
         customDriver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         drop.selectElement(preNumber);

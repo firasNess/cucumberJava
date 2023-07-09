@@ -22,7 +22,7 @@ public class Util {
             log.info("Waiting " + (msec * .001) + " seconds :: " + info);
         }
         try {
-            Thread.sleep(msec);
+            Thread.sleep(msec*1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
