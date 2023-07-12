@@ -42,6 +42,7 @@ public class Steps {
             context.setVariables("currentPage", currentPage);
         }
         currentPage.navigateToPageUrl();
+        Thread.sleep(3000);
         try{
             customDriver.acceptAlert();
         }
@@ -49,6 +50,8 @@ public class Steps {
             log.info("Alert Not available");
         }
         for (String widgetName : currentPage.mainElementsToWaitWhenLoad) {
+            // this is a basewidget that mean its object - not a webElement that contain functions like find and send keys, for that if we call it as we
+            // .... element we cant call the function but we have to call it to get the locator, but also we cant cast it to base widget bcs the get func return webElement
             BaseWidget waitingForElement = (BaseWidget) currentPage.widgets.get(widgetName);
             WebElement element = customDriver.waitForElement(waitingForElement.getLocator(), 5000);
             waitingForElement.setWebElement(element);
