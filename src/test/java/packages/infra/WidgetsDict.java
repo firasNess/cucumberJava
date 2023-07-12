@@ -19,10 +19,10 @@ public class WidgetsDict  {
         String locator = widget.getLocator();
         List<WebElement> list = driver.getElementList(locator);
         if (list.size() == 1){
-            return list.get(1);
+            return list.get(0);
         }
         else {
-            return list.get(widget.getIndex());
+            return list.get(widget.getIndex()-1);
         }
     }
 

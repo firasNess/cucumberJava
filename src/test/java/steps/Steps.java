@@ -60,7 +60,7 @@ public class Steps {
     @When("I write {string} in {string}")
     public void iWriteIn(String text, String label) {
         BasePage page = (BasePage) context.getVariables("currentPage");
-        WebElement widget = (WebElement) page.widgets.get(label);
+        WebElement widget = page.widgets.get(label);
         widget.sendKeys(text);
     }
 

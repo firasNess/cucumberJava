@@ -48,6 +48,11 @@ public class Dropdown extends BaseWidget {
     public String getLocator() {
         return null;
     }
+
+    @Override
+    public int getIndex() {
+        return 0;
+    }
 }
 
 
