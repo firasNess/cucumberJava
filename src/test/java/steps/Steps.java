@@ -36,8 +36,10 @@ public class Steps {
 
         if(context.getVariables("currentPage") == null){
             context.setVariables("currentPage", screenName);
-            currentPage.navigateToPageUrl();
+        } else if(!createdPage.getUrltitle().equals(currentPage.getUrltitle())) {
+            context.setVariables("currentPage", currentPage);
         }
+        currentPage.navigateToPageUrl();
         try{
             customDriver.acceptAlert();
         }

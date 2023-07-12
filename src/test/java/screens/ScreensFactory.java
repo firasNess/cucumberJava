@@ -21,13 +21,12 @@ public class ScreensFactory {
     public Object createScreen(List<String> requestedScreens, boolean storeScreen, boolean forceCreate, CustomDriver driver, String envType) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
         Map<String, Object> screensDict = new HashMap<>();
-        Object SCREEN =  new PlanningInformation(driver,envType);
-        screensDict.put("PlanningInformation", SCREEN);
+        PlanningInformation planningInformation =  new PlanningInformation(driver,envType);
+        screensDict.put("PlanningInformation", planningInformation);
 
         Object screen;
 
         List<Object> screens = new ArrayList<>();
-        log.debug(screens);
 
         if (!(storeScreen == false)) {
             storeScreen = true;
@@ -53,7 +52,7 @@ public class ScreensFactory {
         if (screens.size() == 1) {
             return screens.get(0);
         }
-        log.debug(screens);
+
         return screens;
     }
 }
