@@ -1,6 +1,5 @@
 package packages.uiwidgets;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 
@@ -34,6 +33,10 @@ public abstract class BaseWidget {
     public void setWebElement(WebElement webElement) {
         this.webElement = webElement;
     }
+
+    public abstract int getIndex();
+
+
 
     protected WebElement getWebElement() {
         return webElement;

@@ -53,13 +53,19 @@ public class Steps {
             WebElement element = customDriver.waitForElement(waitingForElement.getLocator(), 5000);
             waitingForElement.setWebElement(element);
         }
-        
+
     }
 
 
+    @When("I write {string} in {string}")
+    public void iWriteIn(String text, String label) {
+        BasePage page = (BasePage) context.getVariables("currentPage");
+        WebElement widget = (WebElement) page.widgets.get(label);
+        widget.sendKeys(text);
+    }
 
 
-//
+    // String label, Integer index, CustomDriver driver, String pathLocator, String stepNumber
 //    @When("I write {string} in {string}")
 //    public void iWriteIn(String text, String label) {
 //        TextField textfield = new TextField(label);

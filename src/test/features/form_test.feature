@@ -21,6 +21,7 @@ Feature: CucumberJava
 
   Scenario: Login functionality exists -not skipped test
     Given I navigate to "PlanningInformation" Screen
+    When I write "פראס" in "שם פרטי"
 
 
 

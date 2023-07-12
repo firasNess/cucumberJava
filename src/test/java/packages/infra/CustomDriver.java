@@ -144,10 +144,9 @@ public class CustomDriver {
      *
      * @param locator - locator strategy, id=>example, name=>example, css=>#example,
      *      *                tag=>example, xpath=>//example, link=>example
-     * @param info - Information about element, usually text on element
      * @return
      */
-    public List<WebElement> getElementList(String locator, String info) {
+    public List<WebElement> getElementList(String locator) {
         List<WebElement> elementList = new ArrayList<WebElement>();
         By byType = getByType(locator);
         try {
@@ -171,7 +170,7 @@ public class CustomDriver {
      * @return boolean if element is present or not
      */
     public boolean isElementPresent(String locator, String info) {
-        List<WebElement> elementList = getElementList(locator, info);
+        List<WebElement> elementList = getElementList(locator);
         int size = elementList.size();
         if (size > 0) {
             log.info("Element " + info + " Present with locator " + locator);

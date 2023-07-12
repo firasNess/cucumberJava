@@ -1,5 +1,9 @@
 package packages.infra;
 
+import org.openqa.selenium.WebElement;
+import packages.uiwidgets.BaseWidget;
+
+import java.util.List;
 import java.util.Map;
 
 public class WidgetsDict  {
@@ -10,8 +14,16 @@ public class WidgetsDict  {
         this.driver = driver;
     }
 
-    public Object get(String key){
-        return this.widgets.get(key);
+    public WebElement get(String key){
+        BaseWidget widget = (BaseWidget) this.widgets.get(key);
+        String locator = widget.getLocator();
+        List<WebElement> list = driver.getElementList(locator);
+        if (list.size() == 1){
+            return list.get(1);
+        }
+        else {
+            return list.get(widget.getIndex());
+        }
     }
 
     public void put (String key , Object value){

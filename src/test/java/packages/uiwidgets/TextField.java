@@ -10,7 +10,7 @@ import packages.infra.Util;
 
 public class TextField extends BaseWidget{
     private CustomDriver driver;
-    private Integer index = 0;
+    public Integer index = 0;
     private String pathLocator = null;
     private String stepNumber = null;
 
@@ -22,10 +22,17 @@ public class TextField extends BaseWidget{
         this.stepNumber = stepNumber;
         this.webElement = null;
     }
+
     public String getLocator() {
         String value = String.format("xpath=>//label[contains(text(), '%s')]/following-sibling::input", this.label);
         return value;
     }
+
+    @Override
+    public int getIndex( ) {
+        return this.index;
+    }
+
 
     public String getTextValue(){ return this.webElement.getAttribute("value"); }
 
