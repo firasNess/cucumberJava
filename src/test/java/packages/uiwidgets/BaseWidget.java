@@ -20,20 +20,18 @@ public abstract class BaseWidget {
     }
 
     //Todo: need more work on it
-    protected void setWidgetWebElement(BaseWidget element, WebElement tempElement, int index) {
-        if (tempElement == null) {
-            WebElement locatedElement = webElement.findElements(element.getLocator()).get(index - 1);
-            element.setWebElement(locatedElement);
-        } else {
-            element.setWebElement(tempElement);
-        }
-    }
+//    protected void setWidgetWebElement(BaseWidget element, WebElement tempElement, int index) {
+//        if (tempElement == null) {
+//            WebElement locatedElement = webElement.findElements(element.getLocator()).get(index - 1);
+//            element.setWebElement(locatedElement);
+//        } else {
+//            element.setWebElement(tempElement);
+//        }
+//    }
 
-    private By getLocator() {
-        return null;
-    }
+    public abstract String getLocator();
 
-    protected void setWebElement(WebElement webElement) {
+    public void setWebElement(WebElement webElement) {
         this.webElement = webElement;
     }
 

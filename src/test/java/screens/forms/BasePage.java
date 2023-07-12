@@ -13,8 +13,8 @@ public abstract class BasePage {
     protected String envType;
     protected String mainUrl;
     protected String urlPostfix;
-    protected ArrayList mainElementsToWaitWhenLoad;
-    WidgetsDict widgets;
+    public ArrayList<String> mainElementsToWaitWhenLoad;
+    public WidgetsDict widgets;
     Map<String,Object> map = new HashMap<>();
 
     protected BasePage(CustomDriver driver, String envType) {
@@ -28,21 +28,14 @@ public abstract class BasePage {
         this.fillNeedToWaitElement();
 
     }
-
     public String getUrlPostfix(){
         return this.urlPostfix;
-    }
-
-    public void setUrlPostfix(String url){
-        this.urlPostfix = url;
     }
 
     public abstract String getUrltitle();
 
 
-    protected void fillNeedToWaitElement() {
-
-    }
+    protected abstract void fillNeedToWaitElement();
 
     protected void createBaseWidgets() {
         this.widgets.put("שם פרטי", createWidget("TextField", "שם פרטי",1, driver, "", String.valueOf(Enums.StepNumber.FIRST)));

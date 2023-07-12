@@ -4,9 +4,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import packages.Context;
 import packages.infra.CheckPoint;
 import packages.infra.CustomDriver;
+import packages.uiwidgets.BaseWidget;
 import packages.uiwidgets.Dropdown;
 import packages.uiwidgets.TextField;
 import packages.RunnerFile;
@@ -46,7 +48,12 @@ public class Steps {
         catch (Exception e){
             log.info("Alert Not available");
         }
-        Thread.sleep(5000);
+        for (String widgetName : currentPage.mainElementsToWaitWhenLoad) {
+            BaseWidget waitingForElement = (BaseWidget) currentPage.widgets.get(widgetName);
+            WebElement element = customDriver.waitForElement(waitingForElement.getLocator(), 5000);
+            waitingForElement.setWebElement(element);
+        }
+        
     }
 
 

@@ -1,21 +1,16 @@
 package packages.uiwidgets;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import packages.infra.CustomDriver;
 import java.util.*;
 
 public class WidgetFactory {
-    private static final Logger log = LogManager.getLogger(WidgetFactory.class.getName());
     private static Map<String, Object> widgetMap = new HashMap<>();
 
 
     public static Object createWidget(String widgetType, String label, Integer index, CustomDriver driver, String pathLocator, String stepNumber) {
         if(widgetMap.get(widgetType) == null){
             widgetMap.put("TextField", new TextField(label, index, driver, pathLocator, stepNumber));
-            log.info(String.format("Created" + widgetType + "Widget"));
         }
-
         return widgetMap.get(widgetType);
     }
 
