@@ -18,15 +18,6 @@ public abstract class BaseWidget {
         // Implementation specific to each subclass
     }
 
-    //Todo: need more work on it
-//    protected void setWidgetWebElement(BaseWidget element, WebElement tempElement, int index) {
-//        if (tempElement == null) {
-//            WebElement locatedElement = webElement.findElements(element.getLocator()).get(index - 1);
-//            element.setWebElement(locatedElement);
-//        } else {
-//            element.setWebElement(tempElement);
-//        }
-//    }
 
     public abstract String getLocator();
 
