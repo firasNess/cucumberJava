@@ -14,7 +14,7 @@ public class CheckPoint {
     public static HashMap<String, String> resultMap = new HashMap<String, String>();
     private static String PASS = "PASS";
     private static String FAIL = "FAIL";
-    private static final Logger log = LogManager.getLogger(RunnerFile.class.getName());
+    private static final Logger log = LogManager.getLogger(CheckPoint.class.getName());
 
 
     /***

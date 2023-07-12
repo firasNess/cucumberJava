@@ -165,7 +165,7 @@ public class RunnerFile {
             // #init_logger_reporter(opt_dict)
 
             //todo:add screen factory to context
-            context.setVariables("screens_manager", new ScreensFactory());
+            context.setVariables("screenFactory", new ScreensFactory());
 
             String mail = "test@gmail.com";
             String temp_mail_api = "tempmail@temp.com";

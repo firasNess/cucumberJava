@@ -13,7 +13,7 @@ import java.time.Duration;
 
 public class JMChromeWebDriver {
     private static WebDriver driver;
-    private static final Logger log = LogManager.getLogger(RunnerFile.class.getName());
+    private static final Logger log = LogManager.getLogger(JMChromeWebDriver.class.getName());
 
     static Context context = Context.getInstance();
     static CustomDriver customDriver;

@@ -1,21 +1,6 @@
 package packages.infra;
 
 public class Enums {
-    public enum UIStyle {
-        OLD(1),
-        NEW(2);
-
-        private int value;
-
-        private UIStyle(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
-
     public enum SystemUnderTest {
         PROD(1),
         PREPROD(2);
